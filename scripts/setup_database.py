@@ -1,2 +1,3 @@
 #!/usr/bin/env python3
-# Script to initialize vector database
+
+# TODO: add logic to create db

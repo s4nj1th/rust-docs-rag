@@ -1,13 +1,11 @@
 import streamlit as st
 from streamlit_chat import message
 from chatbot import RAGChatbot
-from PIL import Image
 
-favicon = Image.open("assets/favicon.ico")
 
 st.set_page_config(
     page_title="Rust Documentation Chatbot",
-    page_icon=favicon,
+    page_icon="./favicon.ico",
 )
 
 
@@ -33,16 +31,17 @@ st.title("Rust Documentation Chatbot")
 
 chat_placeholder = st.empty()
 
-with chat_placeholder.container():
-    for i in range(len(st.session_state['generated'])):
+with chat_placeholder.container():    
+    for i in range(len(st.session_state['generated'])):                
         message(st.session_state['past'][i], is_user=True, key=f"{i}_user")
         message(
-            st.session_state['generated'][i]['data'],
-            key=f"{i}",
+            st.session_state['generated'][i]['data'], 
+            key=f"{i}", 
             allow_html=True,
-            is_table=st.session_state['generated'][i].get('type') == 'table'
+            is_table=True if st.session_state['generated'][i]['type']=='table' else False
         )
+    
     st.button("Clear message", on_click=on_btn_click)
 
 with st.container():
-    st.text_input("", on_change=on_input_change, key="user_input", placeholder="Ask me anything about Rust programming...")
+    st.text_input("User Input:", on_change=on_input_change, key="user_input")

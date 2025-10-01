@@ -3,7 +3,6 @@ import fitz
 from sentence_transformers import SentenceTransformer
 import chromadb
 from chromadb.config import Settings
-from dotenv import load_dotenv
 import hashlib
 
 load_dotenv()
@@ -64,4 +63,4 @@ class PDFProcessor:
 
 if __name__ == "__main__":
     processor = PDFProcessor()
-    processor.process_and_store("./data/raw_docs/rust_documentation.pdf")
+    processor.process_and_store("./data/raw_docs/rust-docs.pdf")
